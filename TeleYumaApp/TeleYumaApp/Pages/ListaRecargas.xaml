@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            
+             xmlns:custom="clr-namespace:TeleYumaApp"
+             xmlns:rlkcontroles="clr-namespace:TeleYumaApp.rlkControles"
+             x:Class="TeleYumaApp.Pages.ListaRecargas" Title="Recarga Movil">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame Margin="5" Padding="0,0,0,5">
+                <Grid RowSpacing="0" Margin="10">
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Picker x:Name="pkrMonto" TextColor="Black" Title="Monto" Margin="0,2,0,2"
+                            HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0"
+                           >
+                        <Picker.Items>
+                            <x:String>10</x:String>
+                            <x:String>15</x:String>
+                            <x:String>20</x:String>
+                            <x:String>25</x:String>
+                            <x:String>30</x:String>
+                            <x:String>35</x:String>
+                            <x:String>40</x:String>
+                            <x:String>45</x:String>
+                            <x:String>50</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <StackLayout Grid.Row="1" Grid.Column="0" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <custom:CustomEntry LineColor="Black"   x:Name="txtPais"  Margin="0,2,0,2"
+                                                Focused="txtPais_Focused" TextChanged="txtPais_TextChanged" 
+                                                Placeholder="País" Grid.Row="0" Grid.Column="0" 
+                                              />
+
+
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <rlkcontroles:rlkImageButton x:Name="imgContactos" Source="contactos1.jpg" HeightRequest="40"  >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="imgContactos_cliked"/>
+                            </Image.GestureRecognizers>
+                        </rlkcontroles:rlkImageButton>
+                        <custom:CustomEntry LineColor="#232397" Margin="0,2,0,2" HorizontalOptions="FillAndExpand"
+                                                x:Name="txtTelefono"   
+                                                Placeholder="Teléfono"
+                                           
+                                               />
+
+                        <ActivityIndicator x:Name="WaintTelefono" HeightRequest="20" IsVisible="True"
+                                               IsRunning="False" Color="Orange"/>
+                    </StackLayout>
+
+                    <rlkcontroles:rlkImageButton x:Name="addToList" Source="carrito4.jpg"   HeightRequest="80" BackgroundColor="Transparent"  Grid.Row="0" Grid.Column="1" Grid.RowSpan="3">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="btnAddRecarga_Clicked"/>
+                        </Image.GestureRecognizers>
+                    </rlkcontroles:rlkImageButton>
+                    <rlkcontroles:rlkImageButton x:Name="addToList2"    HeightRequest="50" BackgroundColor="Transparent"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="btnAddRecarga_Clicked"/>
+                        </Image.GestureRecognizers>
+                    </rlkcontroles:rlkImageButton>
+
+
+                </Grid>
+
+
+            </Frame>
+            <StackLayout>
+                <ListView x:Name="ListView"  HasUnevenRows="True" SeparatorColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="0,0,0,0" >
+                                    <Frame Margin="5" Padding="0" >
+                                        <StackLayout Margin="5" BackgroundColor="White">
+                                            <Grid ColumnSpacing="10" RowSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <!--<ColumnDefinition Width="100*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="1"/>
+                                                    <ColumnDefinition Width="40"/>-->
+                                                    <ColumnDefinition Width="30*"/>
+                                                    <ColumnDefinition Width="30*"/>
+                                                    <ColumnDefinition Width="30*"/>
+
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                                    <Label Text="{Binding topupResponseOperador}" TextColor="#4472C4" HorizontalOptions="Center"/>
+                                                    <BoxView BackgroundColor="Gray" HeightRequest="1"/>
+
+                                                </StackLayout>
+
+
+                                                <Label Text="Monto" TextColor="Gray" Font="16" Grid.Row="1" Grid.Column="0"/>
+                                                <Label Text="{Binding monto ,StringFormat='${0} usd'}" TextColor="#4472C4" Grid.Row="2" Grid.Column="0"/>
+
+                                                <Label Text="Total a Pagar" TextColor="Gray"  Grid.Row="1" Grid.Column="1"/>
+                                                <Label Text="{Binding TotalPagar ,StringFormat='${0} usd'}" TextColor="#4472C4" Grid.Row="2" Grid.Column="1"/>
+
+                                                <Label Text="Teléfono" TextColor="Gray" Grid.Row="1" Grid.Column="2"/>
+                                                <Label Text="{Binding numero}" TextColor="#4472C4" Grid.Row="2" Grid.Column="2"/>
+
+                                                <!--<BoxView BackgroundColor="Gray" Margin="0,5,0,5" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" WidthRequest="1"/>-->
+
+
+                                                <!--<AbsoluteLayout Grid.Row="0" Grid.Column="0">
+                                                    <Label Text="Operador :" Margin="5,5,5,0" TextColor="Black"/>
+                                                    <Label Text="{Binding topupResponseOperador}" TextColor="#4472C4" Margin="70,5,25,0"/>
+                                                </AbsoluteLayout>-->
+
+                                                <!--<AbsoluteLayout Grid.Row="1" Grid.Column="0">
+                                                    <Label Text="Teléfono: " TextColor="Black" Margin="5,5,5,0"/>
+                                                    <Label Text="{Binding numero}" TextColor="#4472C4" Margin="75,5,10,0"/>
+                                                </AbsoluteLayout>-->
+
+                                                <!--<AbsoluteLayout Grid.Row="2" Grid.Column="0">
+                                                    <Label Text="Monto:" TextColor="Black" Margin="5,5,5,0"/>
+                                                    <Label Text="{Binding monto ,StringFormat='${0} USD'}" TextColor="#4472C4" Margin="55,5,25,5"/>
+                                                </AbsoluteLayout>-->
+
+                                                <!--<BoxView BackgroundColor="Gray" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Margin="0,5,0,5" WidthRequest="1"/>-->
+
+                                                <!--<Button Grid.Row="0" Grid.Column="3" Text="add"/>-->
+                                                <Image x:Name="btnDelete"  Source="delete" Grid.Row="2" Grid.Column="3"  Margin="0,0,0,5" HeightRequest="20">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="btnDelete_Clicked"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout  HorizontalOptions="CenterAndExpand" Margin="10">
+                <Button Text="Siguiente"  BackgroundColor="Green" Clicked="btnSiguiente_Clicked" TextColor="White" Font="16" FontAttributes="Bold" HeightRequest="50" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

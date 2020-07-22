@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:custom="clr-namespace:TeleYumaApp" 
+              xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"
+              xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
+              x:Class="TeleYumaApp.PagesInicio.ConfirmarTelefono" 
+              Title="Confirmar Teléfono">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="15">
+
+            <!--<Frame BackgroundColor="White" >
+
+                <Grid Margin="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Font="16" HorizontalTextAlignment="Center" Text="Entre en código de 4 digitos enviado a su de telefono" TextColor="Black"/>
+
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry x:Name="txtDigit_1"  TextColor="White" LineColor="Gray" TextChanged="txtDigit_1_TextChanged"
+                                            FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry x:Name="txtDigit_2" TextColor="White" LineColor="Gray" TextChanged="txtDigit_2_TextChanged"
+                                            FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry x:Name="txtDigit_3" TextColor="White" LineColor="Gray" TextChanged="txtDigit_3_TextChanged"
+                                            FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="3" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry  x:Name="txtDigit_4" TextColor="White" LineColor="Gray" TextChanged="txtDigit_4_TextChanged"
+                                             FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+
+                </Grid>
+            </Frame>-->
+
+            <Grid x:Name="formulario" IsVisible="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>                  
+                    <RowDefinition Height="60"/>                  
+                    <RowDefinition Height="70*"/>
+                </Grid.RowDefinitions>
+                
+                <Image Grid.Row="0" Source="newPhoneSMS" />
+
+                <StackLayout Grid.Row="1" Margin="10,0,10,0"> 
+                    <Label  Grid.Row="1" TextColor="Black"
+                            HorizontalTextAlignment="Center" 
+                            Text="Usted recibirá un sms con nuestro código de verificación, por favor ingrese el código a continuación."/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Margin="10,0,10,0">
+
+                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="20">
+                        <Entry x:Name="txtDigit_1" WidthRequest="60" TextChanged="txtDigit_1_TextChanged">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry x:Name="txtDigit_2" WidthRequest="60" TextChanged="txtDigit_2_TextChanged">
+                            <Entry.Behaviors>
+                            <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry x:Name="txtDigit_3" WidthRequest="60" TextChanged="txtDigit_3_TextChanged">
+                            <Entry.Behaviors>
+                            <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry x:Name="txtDigit_4" WidthRequest="60" TextChanged="txtDigit_4_TextChanged">
+                            <Entry.Behaviors>
+                            <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </StackLayout>
+                    
+                    <Label x:Name="LblContador" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                    <Label x:Name="ResendSms" 
+                           IsVisible="False" 
+                           Text="Aún no tengo mi código."
+                           TextColor="Blue"
+                           TextDecorations="Underline"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ResendSmsTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <StackLayout Margin="0,25,0,0">
+                        <rlk:rlkButtonNet>
+                            <rlk:rlkButtonNet.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="btnCompletar_Clicked"/>
+                            </rlk:rlkButtonNet.GestureRecognizers>
+                        </rlk:rlkButtonNet>
+
+                        <rlk:rlkButtonCancel>
+                            <rlk:rlkButtonCancel.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </rlk:rlkButtonCancel.GestureRecognizers>
+                        </rlk:rlkButtonCancel>
+                    </StackLayout>
+                    
+                </StackLayout>
+                
+            </Grid>
+            
+               
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

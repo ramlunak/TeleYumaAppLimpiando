@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:custom="clr-namespace:TeleYumaApp"             
+              xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"
+             xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
+             x:Class="TeleYumaApp.SMS.Grupos" Title="Mensajes">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnSalir" Icon="ic_search" Command="{Binding SearchCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <!--<AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
+        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <rlk:rlkStackLayoutButton IsVisible="{Binding ShowSerach}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <custom:CustomEntry LineColor="Gray" x:Name="txtSearch" Image="ic_search" HorizontalOptions="FillAndExpand">
+                    <custom:CustomEntry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchTextChangedCommand}"/>
+                    </custom:CustomEntry.Behaviors>
+                </custom:CustomEntry>
+                <Image Source="clean.png" HeightRequest="20" Margin="5" HorizontalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SearchTappedCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </rlk:rlkStackLayoutButton>
+
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <custom:ScrollableListView 
+                    x:Name="listGrupos" 
+                    Grid.Row="0"
+                    Grid.Column="0"  
+                    Grid.RowSpan="2"
+                    ItemsSource="{Binding Grupos,Mode=TwoWay}"
+                    ItemSelected="listGrupos_ItemSelected"
+                    
+                    LongClicked="listGrupos_LongClicked"
+                    
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell custom:LongPressedEffect.Command="{Binding ViewCellLongPressCommand}">
+                                <ViewCell.Effects>
+                                    <custom:LongPressedEffect/>
+                                </ViewCell.Effects>
+                                <StackLayout Margin="10">
+                                    <Grid RowSpacing="2" Margin="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="100*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding icono}"  HeightRequest="50" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"/>
+
+                                        <StackLayout IsVisible="{Binding mostrarIconoUser}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Image Source="user.png"   HeightRequest="15" WidthRequest="15" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                        <Label Text="{Binding inicial}" TextColor="White" FontSize="20"  Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" Grid.RowSpan="2"/>
+                                        <Label  Text="{Binding contacto}" Font="16" TextColor="Black"  Grid.Row="0" Grid.Column="1" />
+
+                                        <StackLayout Grid.Row="0" Grid.Column="2" IsVisible="{Binding ShowNews}">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="32"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="32"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="CirculoAzul.png"  HeightRequest="20" WidthRequest="20" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" />
+                                                <Label  Text="{Binding count}" Font="8" TextColor="White" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                                            </Grid>
+
+                                        </StackLayout>
+
+                                        <Label  Text="{Binding fecha}" Font="10" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="3" Margin="0,0,5,0" />
+
+                                        <Label Text="{Binding ultimoSMS}" LineBreakMode="TailTruncation" Font="14" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                                        <Label Text="{Binding Hora}" Font="10" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="3" Margin="0,0,5,0" />
+
+                                    </Grid>
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </custom:ScrollableListView>
+
+                <rlk:rlkImageButton Source="flotante" Grid.Row="1" Grid.Column="0"  HorizontalOptions="End" Margin="10,5,0,5">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="IMG_NEW_SMS" Tapped="IMG_NEW_SMS_Tapped"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </rlk:rlkImageButton>
+            </Grid>
+
+            <ContentView x:Name="popupOpciones" BackgroundColor="#C0808080" Padding="0" 
+                         IsVisible="{Binding popupOpcionesVisible}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </ContentView.GestureRecognizers>
+                
+                <StackLayout  VerticalOptions="Center" HorizontalOptions="FillAndExpand" Spacing="0" Padding="5" Margin="15" BackgroundColor="Transparent">
+                  
+                    <Frame CornerRadius="15" Padding="2" Margin="0">
+                        <StackLayout Orientation="Vertical"  BackgroundColor="Transparent" >
+                                                      
+                            <Button Image="delete" Text="Eliminar" Command="{Binding EliminarCommand}"
+                                    HorizontalOptions="StartAndExpand" HeightRequest="50" BackgroundColor="Transparent"/>
+                            
+                        </StackLayout>
+                    </Frame>
+                    
+                </StackLayout>
+            </ContentView>
+          
+        </AbsoluteLayout>
+
+       
+    </ContentPage.Content>
+</ContentPage>
+    

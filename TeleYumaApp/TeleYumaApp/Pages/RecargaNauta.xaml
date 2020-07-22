@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            
+               xmlns:custom="clr-namespace:TeleYumaApp" 
+             x:Class="TeleYumaApp.Pages.RecargaNauta" Title="Recarga Nauta">
+    <ContentPage.Content>
+        <StackLayout x:Name="LayoutForm" VerticalOptions="FillAndExpand">
+
+            <Grid RowSpacing="10"  BackgroundColor="White" Padding="20,20,20,20" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="auto"/>
+                    <RowDefinition  Height="auto"/>
+                    <RowDefinition  Height="auto"/>
+                    <RowDefinition  Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Picker x:Name="pkr_monto" Title="Monto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                                    >
+                    <Picker.Items>
+                        <x:String>10</x:String>
+                        <x:String>12</x:String>
+                        <x:String>14</x:String>
+                        <x:String>16</x:String>
+                        <x:String>18</x:String>
+                        <x:String>20</x:String>
+                        <x:String>25</x:String>
+                        <x:String>30</x:String>
+                        <x:String>35</x:String>
+                        <x:String>40</x:String>
+                        <x:String>45</x:String>
+                        <x:String>47</x:String>
+                    </Picker.Items>
+                </Picker>
+
+               <!-- <Image Source="contactos1.jpg" HeightRequest="40" Grid.Row="1" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImgContactos_cliked" />
+                    </Image.GestureRecognizers>
+                </Image>-->
+                <custom:CustomEntry  LineColor="#232397" x:Name="txt_usuario" 
+                                     Placeholder="Usuario" Grid.Row="1" Grid.Column="1" BackgroundColor="White" 
+                                     />                               
+                <Label Text="@nauta.com.cu" TextColor="#1E90FF"  Grid.Row="1" Grid.Column="2" VerticalOptions="End"/>
+
+                <StackLayout Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+                    <ActivityIndicator x:Name="waintSimularNauta" IsRunning="False" IsVisible="True" Color="Orange"/>
+                </StackLayout>
+
+            </Grid>
+
+            <StackLayout BackgroundColor="#70AD47" HorizontalOptions="FillAndExpand">
+                <Button Text="Siguiente" Clicked="btnSiguiente_Clicked"  BackgroundColor="#70AD47"  TextColor="White" Font="16" FontAttributes="Bold" HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

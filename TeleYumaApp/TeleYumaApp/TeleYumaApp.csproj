@@ -1,0 +1,318 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceAssemblyReference>true</ProduceAssemblyReference>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="PagesNew\New folder\**" />
+    <EmbeddedResource Remove="PagesNew\New folder\**" />
+    <None Remove="PagesNew\New folder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\HomeTabbedPage2.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\HomeTabbedPage2.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AiForms.Effects" Version="1.6.7" />
+    <PackageReference Include="CardsView" Version="2.4.8" />
+    <PackageReference Include="CarouselView" Version="7.0.3.1" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PayPal.Forms" Version="2.18.6" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF" Version="1.0.2" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />  
+    <PackageReference Include="Xamarin.Forms.Contacts" Version="1.0.5" />  
+    <PackageReference Include="Xamarin.KeyboardHelper" Version="2.0.7" />  
+    <PackageReference Include="XamarinFastEntry.Behaviors" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Behaviors\" />
+    <Folder Include="BottonBar\" />
+    <Folder Include="Teleyuma\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\HomeTabbedPage.xaml.cs">
+      <DependentUpon>HomeTabbedPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Contactos\ListaContactos.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Contactos\Llamar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Cuenta\TargetaCredito.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Cuenta\VerificarTargeta.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesInicio\Cargando.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesInicio\ConfirmarTelefono.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesInicio\CrearCuenta.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesInicio\DatosCuenta.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesInicio\Login.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesInicio\Telefono.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\CambiarClave.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\Compras.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\ContactosLlamar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\DatosUsuario.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\HistorialLlamadas.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\Inicio.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\Llamadas.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\prueba.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\Recargas.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\ResumenRecarga.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Historial.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Home.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\ListaRecargas.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MasterDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\NewListaPaises.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Pagar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\PhoneContacs.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\RecargaNauta.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\RespuestaRecarga.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SeleccionarMetodoPago.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TipoRecarga.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TransferenciaBancaria.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\Combobox.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\Contador.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\rlkButtonCancel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\rlkButtonNet.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\rlkButtonSeguridad.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\rlkLoading.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\Textbox.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SMS\Grupos.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SMS\Mensaje.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SMS\NewSMS.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Contactos\ListaContactos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Contactos\Llamar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cuenta\TargetaCredito.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cuenta\VerificarTargeta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesInicio\Cargando.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesInicio\ConfirmarTelefono.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesInicio\CrearCuenta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesInicio\DatosCuenta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesInicio\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesInicio\Telefono.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesNew\Compras.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesNew\DatosUsuario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesNew\Inicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesNew\prueba.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesNew\Recargas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesNew\ResumenRecarga.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Historial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\HomeTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\HomeTabbedPage1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\HomeTabbedPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\ListaRecargas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\MasterDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\NewListaPaises.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Pagar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\PhoneContacs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\RecargaNauta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\RespuestaRecarga.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\SeleccionarMetodoPago.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Tabs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\TipoRecarga.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\TransferenciaBancaria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="rlkControles\Combobox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="rlkControles\Contador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="rlkControles\rlkButtonNet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="rlkControles\Textbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="SMS\Enviar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="SMS\Grupos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="SMS\Mensaje.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="SMS\NewSMS.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

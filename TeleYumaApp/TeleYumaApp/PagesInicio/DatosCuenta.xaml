@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TeleYumaApp.Behaviors"
+             xmlns:custom="clr-namespace:TeleYumaApp"
+             xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
+             x:Class="TeleYumaApp.PagesInicio.DatosCuenta" Title="Cuenta">
+    <ContentPage.Content>
+        <StackLayout Margin="15">
+            
+            <Image Source="newUser" Margin="0,35,0,0"/>
+            
+                <ScrollView>               
+                    <Grid  RowSpacing="3" Margin="15"  VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0"  >
+                            <Entry Placeholder="Nombre"   x:Name="txt_firstname"  Text="{Binding firstname}" />
+                            <Label x:Name="validate_txt_firstname" TextColor="Orange" HorizontalOptions="End" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" Spacing="0" >
+                        <Entry Placeholder="Apellidos"  x:Name="txt_lastname" Text="{Binding lastname}" />
+                            <Label x:Name="validate_txt_lastname" TextColor="Orange" HorizontalOptions="End" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Grid.Column="0" Spacing="0" >
+                        <Entry Placeholder="Email" x:Name="txt_email" Text="{Binding email}" >
+                                <Entry.Behaviors>
+                                    <local:EmailValidatorBehavior/>
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label x:Name="validate_txt_email" TextColor="Orange" HorizontalOptions="End" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="3" Grid.Column="0" Spacing="0">
+                        <Entry Placeholder="Contraseña" x:Name="txt_Password" Text="{Binding password}"  IsPassword="True" >
+                                <Entry.Behaviors>
+                                    <local:PasswordValidatorBehavior/>
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label x:Name="validate_txt_Password" TextColor="Orange" HorizontalOptions="End" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="4" Grid.Column="0" Spacing="0" >
+                        <Entry Placeholder="Confirmar contraseña"  x:Name="txt_Password2" Text="{Binding password}" IsPassword="True"/>
+                            <Label x:Name="validate_txt_Password2" TextColor="Orange" HorizontalOptions="End" />
+                        </StackLayout>
+                    <ActivityIndicator IsRunning="True"  IsVisible="False"
+                                   x:Name="Loading"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"                                  
+                                   Color="Orange"
+                                   Grid.Row="0" 
+                                   Grid.RowSpan="8"/>
+                </Grid>
+               
+            </ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand">
+                 <rlk:rlkButtonNet>
+                    <rlk:rlkButtonNet.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="btnCompletar_Clicked"/>
+                    </rlk:rlkButtonNet.GestureRecognizers>
+                </rlk:rlkButtonNet>
+
+                <rlk:rlkButtonCancel>
+                    <rlk:rlkButtonCancel.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </rlk:rlkButtonCancel.GestureRecognizers>
+                </rlk:rlkButtonCancel>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

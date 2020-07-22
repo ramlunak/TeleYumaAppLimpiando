@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"                  
+               xmlns:custom="clr-namespace:TeleYumaApp"                  
+               xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"                 
+                       
+               xmlns:fastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors" 
+             x:Class="TeleYumaApp.Cuenta.TarjetaCredito" Title="Tarjeta de Crédito">
+    <Page.Resources>
+        <ResourceDictionary>
+            <behaviors:CardNumberToImageConverter x:Key="CardConverter"
+               Amex="an" Dinners="ca" Discover="cu" JCB="bl"  MasterCard="bm" Visa="ae"  NotRecognized="ar"/>
+
+
+        </ResourceDictionary>
+    </Page.Resources>
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+
+            <StackLayout VerticalOptions="FillAndExpand" Margin="15">
+
+
+                <Label Text="Tipo de tarjeta" Margin="0,10,0,0"/>
+
+                <Picker x:Name="pkr_payment_method"  TitleColor="Gray" Title="Seleccione el tipo de tarjeta"                                    
+                        
+                        ItemsSource="{Binding PickerData}">
+
+                </Picker>
+
+                <Label Text="Número de tarjeta" Margin="0,10,0,0"/>
+                <custom:CustomEntry LineColor="#232397" x:Name="txt_number"  Keyboard="Numeric" TextColor="Black" Placeholder="#### #### #### ####" PlaceholderColor="LightGray" >
+                    <custom:CustomEntry.Behaviors>
+                        <fastEntry:XamarinFastEntryBehaviour Mask="#### #### #### ####"  MaxLength="19"/>
+                    </custom:CustomEntry.Behaviors>
+                </custom:CustomEntry>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Label Text="Fecha de vto." TextColor="Gray" />
+                        <custom:CustomEntry x:Name="txt_fecha" Keyboard="Numeric" Placeholder="MM/AA" LineColor="#232397" PlaceholderColor="LightGray">
+                            <custom:CustomEntry.Behaviors>
+                                <fastEntry:XamarinFastEntryBehaviour Mask="##/##" MaxLength="5"/>
+                            </custom:CustomEntry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Label Text="CVV" TextColor="Gray" />
+                        <custom:CustomEntry x:Name="txt_cvv" Keyboard="Numeric" Placeholder="***" IsPassword="True"  LineColor="#232397" PlaceholderColor="LightGray">
+                            <custom:CustomEntry.Behaviors>
+                                <fastEntry:XamarinFastEntryBehaviour Mask="###" MaxLength="3"/>
+                            </custom:CustomEntry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout  >
+                    <Label Text="Nombre de la tarjeta:" TextColor="Gray"  />
+                    <custom:CustomEntry  LineColor="#232397" x:Name="txt_name"  Text="{Binding name}" />
+                </StackLayout>
+
+                <StackLayout  >
+                    <Label Text="País:" TextColor="Gray" />
+                    <Picker Title="Seleccione el país"
+                            TitleColor="Gray" 
+                            ItemsSource="{Binding Countrys}"
+                            SelectedItem="{Binding CountrySelectedItem}"
+                            ItemDisplayBinding="{Binding name}">
+
+                        <Picker.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SelectedIndexChangedCommand}"/>
+                        </Picker.Behaviors>
+                    </Picker>
+
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Estado/Provincia:" TextColor="Gray" />
+                    <Picker Title="Seleccione el Estado/Provincia"
+                            TitleColor="Gray" 
+                            ItemsSource="{Binding SubCountrys}"
+                            SelectedItem="{Binding SubCountrySelectedItem}"
+                            ItemDisplayBinding="{Binding name}">
+                    </Picker>
+
+                </StackLayout>
+
+                <StackLayout  >
+                    <Label Text="Dirección:" TextColor="Gray" />
+                    <custom:CustomEntry  LineColor="#232397" x:Name="txt_addres" Text="{Binding address}"/>
+                </StackLayout>
+                <StackLayout  >
+                    <Label Text="Código Postal:" TextColor="Gray"  />
+                    <custom:CustomEntry  LineColor="#232397" x:Name="txt_zip" Keyboard="Numeric" Text="{Binding zip}" />
+                </StackLayout>
+
+
+                <StackLayout IsVisible="false">
+                    <Picker x:Name="pkr_exp_date_mes" Grid.Column="0" Title="Mes">
+                        <Picker.Items>
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>
+                            <x:String>3</x:String>
+                            <x:String>4</x:String>
+                            <x:String>5</x:String>
+                            <x:String>6</x:String>
+                            <x:String>7</x:String>
+                            <x:String>8</x:String>
+                            <x:String>9</x:String>
+                            <x:String>10</x:String>
+                            <x:String>11</x:String>
+                            <x:String>12</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker x:Name="pkr_exp_date_year" Grid.Column="1" Title="Año">
+                        <Picker.Items>
+                            <x:String>2018</x:String>
+                            <x:String>2019</x:String>
+                            <x:String>2020</x:String>
+                            <x:String>2021</x:String>
+                            <x:String>2022</x:String>
+                            <x:String>2023</x:String>
+                            <x:String>2024</x:String>
+                            <x:String>2025</x:String>
+                            <x:String>2026</x:String>
+                            <x:String>2027</x:String>
+                            <x:String>2028</x:String>
+                            <x:String>2029</x:String>
+                            <x:String>2030</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                </StackLayout>
+                <!--<Grid RowSpacing="10" BackgroundColor="White" Padding="20,20,20,20" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                        <Label Text="Método de pago:" TextColor="#4472C4" />
+                        <Picker x:Name="pkr_payment_method">
+                            <Picker.Items>
+                                <x:String>MasterCard</x:String>
+                                <x:String>American Express</x:String>
+                                <x:String>Discover</x:String>
+                                <x:String>VISA</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Grid.Column="0" Spacing="0" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*"/>
+                                <ColumnDefinition Width="30*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0">
+                                <Label Text="Número de tarjeta de crédito:" TextColor="#4472C4"  />
+                               <custom:CustomEntry  LineColor="#232397" x:Name="txt_number" Keyboard="Numeric" TextColor="Black" >
+                                    <custom:CustomEntry.Behaviors>
+                                        <fastEntry:XamarinFastEntryBehaviour Mask="#### #### #### ####" 
+                                               MaxLength="19"/>
+                                    </custom:CustomEntry.Behaviors>
+                                </custom:CustomEntry>
+                                <suave:MaterialEntry x:Name="txt_number"  Placeholder="Number" Keyboard="Numeric" AccentColor="Red">
+                                  
+                                </suave:MaterialEntry>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="Cvv:" TextColor="#4472C4" />
+                                <custom:CustomEntry  LineColor="#232397" x:Name="txt_cvv"  Keyboard="Numeric"/>
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Grid.Column="0" Spacing="0" >
+                        <Label Text="Fecha de expiración:" TextColor="#4472C4"  />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+                            <Picker x:Name="pkr_exp_date_mes" Grid.Column="0" Title="Mes">
+                                <Picker.Items>
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                    <x:String>4</x:String>
+                                    <x:String>5</x:String>
+                                    <x:String>6</x:String>
+                                    <x:String>7</x:String>
+                                    <x:String>8</x:String>
+                                    <x:String>9</x:String>
+                                    <x:String>10</x:String>
+                                    <x:String>11</x:String>
+                                    <x:String>12</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Picker x:Name="pkr_exp_date_year" Grid.Column="1" Title="Año">
+                                <Picker.Items>
+                                    <x:String>2018</x:String>
+                                    <x:String>2019</x:String>
+                                    <x:String>2020</x:String>
+                                    <x:String>2021</x:String>
+                                    <x:String>2022</x:String>
+                                    <x:String>2023</x:String>
+                                    <x:String>2024</x:String>
+                                    <x:String>2025</x:String>
+                                    <x:String>2026</x:String>
+                                    <x:String>2027</x:String>
+                                    <x:String>2028</x:String>
+                                    <x:String>2029</x:String>
+                                    <x:String>2030</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                        </Grid>
+                        -->
+                <!--<DatePicker x:Name="pkr_exp_date" Date="{Binding exp_date}" Format="YYYY/MM"/>-->
+                <!--
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="4" Grid.Column="0" Spacing="0" >
+                        <Label Text="Nombre de la tarjeta:" TextColor="#4472C4"  />
+                        <custom:CustomEntry  LineColor="#232397" x:Name="txt_name"  Text="{Binding name}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="5" Grid.Column="0" Spacing="0" >
+                        <Label Text="Dirección:" TextColor="#4472C4" />
+                        <custom:CustomEntry  LineColor="#232397" x:Name="txt_addres" Text="{Binding address}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="6" Grid.Column="0" Spacing="0" >
+                        <Label Text="Código Postal:" TextColor="#4472C4"  />
+                        <custom:CustomEntry  LineColor="#232397" x:Name="txt_zip" Keyboard="Numeric" Text="{Binding zip}" />
+                    </StackLayout>
+                </Grid>-->
+
+
+                <StackLayout BackgroundColor="#70AD47"  VerticalOptions="End">
+                    <Button Text="Guardar"  BackgroundColor="#70AD47" TextColor="White" Clicked="Button_OnClicked" Font="16" FontAttributes="Bold" HeightRequest="50" />
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

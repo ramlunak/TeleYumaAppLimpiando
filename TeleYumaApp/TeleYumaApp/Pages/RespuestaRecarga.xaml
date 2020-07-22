@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage 
+  xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	 x:Class="TeleYumaApp.Pages.RespuestaRecarga" x:Name="winRespuestaRecarga"
+	Padding="10" CloseWhenBackgroundIsClicked="False">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center"  Padding="0" Margin="0" >
+        <Frame Margin="10" Padding="5" >
+            
+            <StackLayout Margin="10,10,10,10">
+                <StackLayout x:Name="LayoutwaintPagando" IsVisible="True">
+                    <Image Source="resultadoRecarga" HeightRequest="100"/>
+                    <Label Text="Resultado de las las Recargas" HorizontalOptions="Center" Font="20"/>
+                    <BoxView BackgroundColor="Gray" HeightRequest="1"/>
+                </StackLayout>
+                
+                <ListView x:Name="list">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding numero}"  Detail="{Binding error}" TextColor="Black"></TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <Button Text="Aceptar" Clicked="Button_Clicked"></Button>
+            </StackLayout>
+           
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

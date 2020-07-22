@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:custom="clr-namespace:TeleYumaApp" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeleYumaApp.Pages.Pagar" Title="Pagar">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+
+            <StackLayout>
+                <ActivityIndicator
+                    x:Name="WaintPagar"
+                           IsVisible="False"
+                           IsRunning="false"
+                           Color="Black" />
+            </StackLayout>
+            <Frame Margin="10" Padding="0">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--<BoxView BackgroundColor="#D2D2D2"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="4" HorizontalOptions="FillAndExpand" ></BoxView>-->
+                    <Image Source="dolar" HeightRequest="100"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"></Image>
+
+
+                    <Label Text="Monto recargas:"  Grid.Row="1" Grid.Column="1" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" ></Label>
+                    <BoxView BackgroundColor="Black" HeightRequest="1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"></BoxView>
+                    <Label Text="Total a pagar:" Grid.Row="3" Grid.Column="1" TextColor="Black" VerticalOptions="Center" ></Label>
+
+                    <Label x:Name="lblMonto" Text="{Binding Monto}" Grid.Row="1" Grid.Column="2" TextColor="#0000CD"></Label>
+                    <Label x:Name="lblTotal" Text="{Binding Total}" Grid.Row="3" Grid.Column="2" TextColor="#0000CD"></Label>
+
+                </Grid>
+            </Frame>
+            <Frame Margin="10">
+                <StackLayout>
+                    <StackLayout x:Name="LayoutPagar" >
+                        <Image Source="tarjeta2" HeightRequest="70" Margin="0,10,0,10"/>
+                        <StackLayout>
+                            <Label x:Name="lblNumeroTarjeta" Text="{Binding NumeroTarjeta}" HorizontalOptions="Center" TextColor="Gray" FontAttributes="Bold" Font="18"/>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" WidthRequest="150" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <Button Text="Pagar" Clicked="Pagar_clicked" BackgroundColor="#70AD47" TextColor="White" HeightRequest="60"  Margin="10,0,10,0"></Button>
+                        <Button Text="Utilizar Otra Tarjeta" BackgroundColor="#4472C4" HeightRequest="60" Clicked="OtraTarjeta_Clicked" TextColor="White" Margin="10,0,10,10"></Button>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="LayoutCargando" IsVisible="False">
+                        <ActivityIndicator x:Name="ActivityIndicator" IsVisible="True" IsRunning="True" Color="Orange"/>
+                        <Label x:Name="LabelAccion" Text="No realice ninguna acción hasta que el sistema complete la solicitud." Font="15"/>
+                        <StackLayout  x:Name="LayoutListaRecargas" IsVisible="False">
+                            <Label Text="Recargas" HorizontalOptions="Center" TextColor="Black"/>
+                            <Frame Padding="0">                                
+                                <ListView x:Name="listRecargas" VerticalOptions="Start">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextCell Text="{Binding numero}"  Detail="{Binding error}" TextColor="Black"></TextCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>                             
+                            </Frame>
+                            <Button Text="Aceptar" TextColor="White" BackgroundColor="Green" Clicked="Button_Clicked"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

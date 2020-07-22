@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TeleYumaApp"
+              xmlns:custom="clr-namespace:TeleYumaApp"             
+              xmlns:control="clr-namespace:TeleYumaApp.rlkControles"             
+              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Title="Verificar Tarjeta"
+             x:Class="TeleYumaApp.Cuenta.VerificarTarjeta">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout Margin="20">
+                
+                <Image   Source="creditcardsecure" WidthRequest="200"/>
+                
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="10">
+                    <Image Source="banco" WidthRequest="60"/>
+                    <StackLayout>
+                        <Label Text="Ingresa a tu cuenta de banco online" TextColor="Black" FontSize="14"/>
+                        <Label Text="(Discover, Chase, Banco of América,  Wells Fargo , etc)"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="10">
+                    <Image Source="transaccion" WidthRequest="60"/>
+                    <StackLayout>
+                        <Label Text="Busca la última transacción a nombre de WLSTECHNOLOGY" TextColor="Black" FontSize="14"/>
+                        <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='(Con fecha {0:MMMM dd, yyyy})'}"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Image Source="dinero" WidthRequest="60"/>
+                    <StackLayout>
+                        <Label Text="Ingrese debajo el valor de esa transacción" TextColor="Black" FontSize="14"/>
+                        <Label Text="Ejemplo 0.65"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout  VerticalOptions="FillAndExpand">
+                    
+                    <StackLayout x:Name="layoutEnviandoAutorize" VerticalOptions="FillAndExpand"  IsVisible="False" Margin="10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                           <ActivityIndicator IsRunning="True" IsVisible="True" Color="Gold"/>
+                           <Image Source="enviandodinero" WidthRequest="60"/>
+                        </StackLayout>
+                        <Label Text="Un momento por favor estamos enviando el monto de la transacción." HorizontalTextAlignment="Center" TextColor="Black"/>
+                        <!--<Grid VerticalOptions="FillAndExpand" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="1">
+                                <ActivityIndicator IsRunning="True" IsVisible="True"/>
+                                <Label Text="Por favor espere un momento la aplicación le está enviando la autorización de cobro."/>
+                            </StackLayout>
+                        </Grid>-->
+                    </StackLayout>
+                    
+                    <StackLayout x:Name="layoutContenido" HorizontalOptions="CenterAndExpand" IsVisible="True">
+                        <Label x:Name="lblMonto"></Label>
+                       
+                        <Frame x:Name="frameIntentoFallido" IsVisible="False"  >
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="errordecmprobacion" WidthRequest="60"/>
+                                <StackLayout Margin="5">
+                                    <Label FontSize="16" TextColor="Red" Text="El valor no corresponde"/>
+                                    <Label FontSize="14" TextColor="Gray" Text="(Por seguridad su cuenta de TeleYuma será bloqueada si falla mas una vez)"/>
+                                </StackLayout>
+                                  </StackLayout>
+                        </Frame>
+
+                        <Frame x:Name="frameComprovacionCorrecta" IsVisible="False"  >
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="comprobacioncorrecta" WidthRequest="70"/>
+                                <StackLayout Margin="5">
+                                    <Label FontSize="16" TextColor="Green" Text="Felicidades!!!"/>
+                                    <Label FontSize="14" TextColor="Black" Text="Ha verificado su tarjeta, gracias por utilizar nuestros servicios"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <!--<Frame x:Name="frameComprovacionCorrecta" IsVisible="True" BackgroundColor="Green" Padding="3">
+                            <Label FontSize="15" TextColor="White" Text="Su cuenta ha sido verificada correctamente,gracias por utilizar nuestros servicios"/>
+                        </Frame>-->
+                        <Frame x:Name="frameFormulario" HorizontalOptions="Center" Margin="10">
+                       
+                          
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
+                                <Label Text="Valor total" TextColor="Black" FontSize="16" VerticalTextAlignment="Center" Margin="10"/>
+
+                                <control:entry  Grid.Column="0" IsEnabled="False" LineColor="Gray" Placeholder="0." PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"/>
+             
+                                <custom:CustomEntry Grid.Column="1"  x:Name="txtUnidad"  LineColor="Gray"  Placeholder="0"   WidthRequest="40"   TextChanged="txtUnidadTextChanged"                      
+                                  Keyboard="Numeric"  PlaceholderColor="Gray"   HorizontalOptions="FillAndExpand"/>
+                                                                    
+                                <custom:CustomEntry Grid.Column="2"    x:Name="txtDecena"     Placeholder="0"   Keyboard="Numeric"    TextChanged="txtDecenaTextChanged"                          
+                                           WidthRequest="40"  LineColor="Gray"    PlaceholderColor="Gray"  HorizontalOptions="FillAndExpand"/>                                             
+                           
+                                <ActivityIndicator  Grid.Column="3"     x:Name="loadinComprobando"     IsRunning="True"  IsVisible="False"/> 
+                                
+                            </StackLayout>  
+                                                           
+                                                     
+                            <!--<StackLayout>
+                              
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <custom:CustomEntry   Grid.Column="0"
+                            IsEnabled="False"
+                     LineColor="Gray"                          
+                     Placeholder="0,"                   
+                     PlaceholderColor="Gray"
+                     HorizontalOptions="FillAndExpand"/>
+
+                                    <custom:CustomEntry Grid.Column="1"                    
+                                 x:Name="txtUnidad"
+                                 LineColor="Gray"                            
+                                 Placeholder="0"       
+                                 WidthRequest="60"
+                                                TextChanged="txtUnidadTextChanged"
+                                 Keyboard="Numeric"                       
+                                 PlaceholderColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                                    <custom:CustomEntry Grid.Column="2"                   
+                                 x:Name="txtDecena"                           
+                                 Placeholder="0"                   
+                                 Keyboard="Numeric"
+                                                 TextChanged="txtDecenaTextChanged"
+                                 WidthRequest="60"
+                                 LineColor="Gray"
+                                 PlaceholderColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                                    <ActivityIndicator  Grid.Column="3"     
+                                x:Name="loadinComprobando" 
+                                IsRunning="True"
+                                IsVisible="False"/>
+                                </Grid>
+
+                            </StackLayout>-->
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

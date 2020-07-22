@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rlkcontroles="clr-namespace:TeleYumaApp.rlkControles"
+             mc:Ignorable="d"
+            
+             x:Class="TeleYumaApp.PagesNew.HistorialLlamadas">
+    <ContentPage.Content>
+        <StackLayout Margin="0,15,0,0" >
+            <Frame Margin="5" Padding="5" IsVisible="False">
+                <Grid RowSpacing="2" Margin="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="auto"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Desde: " Grid.Row="0" Grid.Column="0" VerticalOptions="Center" TextColor="Black" Margin="5"/>
+                    <DatePicker x:Name="pkrDesde" Grid.Row="1" Grid.Column="0"/>
+
+                    <Label Text="Hasta: " Grid.Row="0" Grid.Column="1" VerticalOptions="Center" TextColor="Black" Margin="5"/>
+                    <DatePicker  x:Name="pkrHasta" Grid.Row="1" Grid.Column="1"/>
+
+                    <Image Source="lupa" HeightRequest="80" WidthRequest="80" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="imgBuscar" Tapped="imgBuscar_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+
+            <ListView x:Name="listGistorial" 
+                      HasUnevenRows="True" 
+                       IsGroupingEnabled="True"
+                      SeparatorVisibility="None"
+                       GroupDisplayBinding="{Binding Key}"
+                       GroupShortNameBinding="{Binding Key}"
+                      ItemSelected="listGistorial_ItemSelected">
+                
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="25">
+                            <Grid VerticalOptions="FillAndExpand">
+                                <StackLayout>
+                                    <Label Margin="0,5,0,0" Text="{Binding Key}"  HorizontalOptions="Center" TextColor="Gray"/>      
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>                         
+                            <rlkcontroles:rlkStackLayoutButton Margin="0,5,0,15">
+                                <Grid RowSpacing="2" Margin="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="1"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="100*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Image Source="usuario"  HeightRequest="35" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="5,0,0,0"/>
+                                    <Label Text="{Binding Contacto}" Font="16" TextColor="Black" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                                    <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="2" VerticalOptions="Center">
+                                        <Image Source="llamada" WidthRequest="15" Margin="0"/>
+                                        <Label  Text="{Binding country}" Font="12" />
+                                    </StackLayout>
+                                  
+                                    <Label Text="{Binding hora}" Font="13" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="3" Margin="0,0,15,0" />
+                                    <Label Text="{Binding time}" TextColor="Blue" Font="13" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="3" Margin="0,0,15,0" />
+                                    <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" BackgroundColor="LightGray" Margin="0,0,15,0"/>
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding CLD}"/>
+                                </StackLayout.GestureRecognizers>
+                            </rlkcontroles:rlkStackLayoutButton>                          
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

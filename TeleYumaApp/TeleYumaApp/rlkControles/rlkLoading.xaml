@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TeleYumaApp.rlkControles.rlkLoading"
+             AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+             AbsoluteLayout.LayoutFlags="All" IsVisible="True"
+             BackgroundColor="Black"
+             Opacity="0.8"
+             Padding="10, 0">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+        <ActivityIndicator
+                    WidthRequest="110"
+                    HeightRequest="70" 
+                    IsRunning="True" 
+                    IsVisible="True" 
+                    Color="OrangeRed" 
+                    HorizontalOptions="CenterAndExpand" 
+                    VerticalOptions="CenterAndExpand"/>
+        <Label Text="Cargando..." HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
+             mc:Ignorable="d"
+             x:Class="TeleYumaApp.PagesNew.CambiarClave">
+    <ContentPage.Content>
+        <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
+
+            <Grid >
+                <ActivityIndicator IsVisible="{Binding IsLoading}" WidthRequest="150" IsRunning="True" />
+                <Image Source="clave" Margin="25" WidthRequest="150"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </Grid>
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>                  
+                </Grid.ColumnDefinitions>
+                <Image Source="contrasena" Grid.Column="0"/>
+                <StackLayout Grid.Column="1" Spacing="0">
+                    <Entry
+                        Text="{Binding ClaveActual,Mode=OneWayToSource}"
+                        IsPassword="True"
+                        Placeholder="Contraseña actual"
+                        HorizontalOptions="Fill"/>
+                    <Label IsVisible="{Binding ClaveIncorrecta}" Text="Contraseña incorrecta" TextColor="Red" FontSize="Small" Padding="0"/>
+                </StackLayout>
+            </Grid>
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>                   
+                </Grid.ColumnDefinitions>
+                <Image Source="contrasena" Grid.Column="0"/>
+                <StackLayout Grid.Column="1" Spacing="0">
+                <Entry  
+                        Text="{Binding NuevaClave,Mode=OneWayToSource}"
+                        IsPassword="True"
+                        Placeholder="Nueva contraseña"
+                        HorizontalOptions="Fill"/>
+                    <Label IsVisible="{Binding ClaveInsegura}" Text="Contraseña insegura.Ejp(Pedro456*)" TextColor="Red" FontSize="Small" Padding="0"/>
+                </StackLayout>
+            </Grid>
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="contrasena" Grid.Column="0"/>
+                <StackLayout Grid.Column="1" Spacing="0">
+                    <Entry  
+                        Text="{Binding ConfirmarClave,Mode=OneWayToSource}"
+                        IsPassword="True"
+                        Placeholder="Confirmar contraseña"
+                        HorizontalOptions="Fill"/>
+                    <Label IsVisible="{Binding ClaveNoCoinciden}" Text="Las contraseñas no coinciden" TextColor="Red" FontSize="Small" Padding="0"/>
+                </StackLayout>
+            </Grid>
+
+            <rlk:rlkButtonNet>
+                <rlk:rlkButtonNet.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding CambiarClaveCommand}"/>
+                </rlk:rlkButtonNet.GestureRecognizers>
+            </rlk:rlkButtonNet>
+
+            <rlk:rlkButtonCancel VerticalOptions="EndAndExpand">
+                <rlk:rlkButtonCancel.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding CancelarCommand}"/>
+                </rlk:rlkButtonCancel.GestureRecognizers>
+            </rlk:rlkButtonCancel>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

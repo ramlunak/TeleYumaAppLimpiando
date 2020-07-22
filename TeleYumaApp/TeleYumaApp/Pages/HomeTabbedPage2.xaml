@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           
+             xmlns:local="clr-namespace:TeleYumaApp"
+             xmlns:pages="clr-namespace:TeleYumaApp.Pages"
+             xmlns:sms="clr-namespace:TeleYumaApp.SMS"
+             xmlns:pagesnew="clr-namespace:TeleYumaApp.PagesNew"
+             xmlns:contactos="clr-namespace:TeleYumaApp.Contactos"
+             x:Class="TeleYumaApp.Pages.HomeTabbedPage"
+             Title ="TELEYUMA" BarTextColor="White" SelectedItem="{Binding TabIndex}"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+              BarBackgroundColor="#2196F3"
+   
+            >
+  <TabbedPage.ToolbarItems>
+    <ToolbarItem x:Name="btnContastos" Icon="contactosHome" Clicked="accountToolbarItem_Clicked"/>
+    <ToolbarItem x:Name="btnSalir" Text="Salir" Clicked="ToolbarItem_Clicked" />
+
+  </TabbedPage.ToolbarItems>
+
+  <pagesnew:Inicio  Title="Home" Icon="ic_home_black_48dp" />
+
+  <sms:Grupos Title="Chat"  Icon="ic_announcement_black_48dp" />
+
+  <local:Recargas  Title="Recargar" Icon="ic_add_shopping_cart_black_48dp"     />
+
+  <contactos:Llamar Title="Llamar" Icon="ic_local_phone_48pt"    />
+
+    <pages:Historial Title="Historial" Icon="ic_history_black_18dp"    />
+
+</TabbedPage>

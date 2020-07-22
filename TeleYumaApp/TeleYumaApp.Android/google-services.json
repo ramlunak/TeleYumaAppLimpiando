@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "397459698466",
+    "firebase_url": "https://teleyumaapp.firebaseio.com",
+    "project_id": "teleyumaapp",
+    "storage_bucket": "teleyumaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397459698466:android:475b02b1dd49d522",
+        "android_client_info": {
+          "package_name": "app.teleyuma.v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397459698466-pthne48gl5ld29k11dvcjmct4mgpofap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnoDNL6n4nplIw-bdNiQCBIddswSjiGGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397459698466-pthne48gl5ld29k11dvcjmct4mgpofap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
