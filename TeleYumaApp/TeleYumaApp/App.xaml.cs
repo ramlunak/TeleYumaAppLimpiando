@@ -6,8 +6,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using TeleYumaApp.Class;
-using TeleYumaApp.Teleyuma;
 using Xamarin.Forms;
 
 
@@ -39,7 +37,7 @@ namespace TeleYumaApp
 
         protected override void OnSleep()
         {
-            _Global.IsOpen = false;
+           
             //  Application.Current.Properties["MainPage"] = Application.Current.MainPage;
             ;
         }

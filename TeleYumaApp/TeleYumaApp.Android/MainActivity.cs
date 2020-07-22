@@ -22,12 +22,11 @@ using Android.Support.Design.Widget;
 using Java.Lang;
 using AndroidNotification;
 
-using TeleYumaApp.Class;
+
 using System.Threading.Tasks;
 using System.IO;
 
 using Android.Gms.Common;
-using TeleYumaApp.Droid.Renderers;
 using CarouselView.FormsPlugin.Android;
 using FFImageLoading.Forms.Platform;
 
@@ -95,8 +94,7 @@ namespace TeleYumaApp.Droid
                 //need this line to init effect in android
                 Xamarin.KeyboardHelper.Platform.Droid.Effects.Init(this);
 
-                CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
-                DependencyService.Register<PicturePickerImplementation>();
+                CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();              
                 DependencyService.Register<CallService>();
                 DependencyService.Register<CloseApplication>();
             }
@@ -141,8 +139,7 @@ namespace TeleYumaApp.Droid
                      && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
                 {
                     var IdSms = this.Intent.GetStringExtra("sms");
-                    var open = _Global.IsOpen;
-
+                   
                     if (IdSms == null)
                     {
                         // startService();
