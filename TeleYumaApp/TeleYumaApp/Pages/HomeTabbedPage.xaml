@@ -10,20 +10,20 @@
         <ToolbarItem  Icon="ic_exit_to_app_white_48dp" Clicked="ToolbarItem_Clicked"/>
 
     </xf:BottomBarPage.ToolbarItems>
-         
-    <ContentPage  Title="Home" Icon="ic_home_black_48dp"/>
 
-    <ContentPage Title="Chat"  Icon="ic_announcement_black_48dp"  
+    <ContentPage  Title="Home" Icon="ic_la"/>
+
+    <ContentPage Title="Chat"  Icon="ic_la1"  
                  xf:BottomBarPageExtensions.TabColor ="#DF8F03"                  
                  xf:BottomBarPageExtensions.BadgeColor ="Orange"/>
 
-    <ContentPage  Title="Recargar" Icon="ic_add_shopping_cart_black_48dp" 
+    <ContentPage  Title="Recargar" Icon="ic_la2" 
                      xf:BottomBarPageExtensions.TabColor ="#109C05"   />
 
-    <ContentPage Title="Llamar" Icon="ic_local_phone_48pt"  
+    <ContentPage Title="Llamar" Icon="ic_la3"  
                        xf:BottomBarPageExtensions.TabColor ="#DE0B0E"   />
 
-    <ContentPage Title="Historial" Icon="ic_history_black_48dp" 
+    <ContentPage Title="Historial" Icon="ic_la4" 
                      xf:BottomBarPageExtensions.TabColor ="#050B88"   />
 
 </xf:BottomBarPage>

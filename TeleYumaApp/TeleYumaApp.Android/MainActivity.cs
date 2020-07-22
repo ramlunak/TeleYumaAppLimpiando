@@ -10,9 +10,7 @@ using static TeleYumaApp.App;
 using Android.Content;
 using Xamarin.Forms;
 using static TeleYumaApp.Droid.MainActivity;
-using PayPal.Forms.Abstractions;
 
-using PayPal.Forms;
 using Android.Support.V4.Content;
 using Android;
 using Android.Support.V4.App;
@@ -25,8 +23,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 using Android.Gms.Common;
-using CarouselView.FormsPlugin.Android;
-using FFImageLoading.Forms.Platform;
+
 
 namespace TeleYumaApp.Droid
 {
