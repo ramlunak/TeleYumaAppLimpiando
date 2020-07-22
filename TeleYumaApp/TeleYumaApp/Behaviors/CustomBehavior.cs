@@ -286,10 +286,10 @@ namespace TeleYumaApp.Behaviors
 
         protected override void OnAttachedTo(View bindable)
         {
-            if (bindable is CustomEntry)
-            {
-                ((CustomEntry)bindable).TextChanged += TextChanged;
-            }
+            //if (bindable is CustomEntry)
+            //{
+            //    ((CustomEntry)bindable).TextChanged += TextChanged;
+            //}
 
             base.OnAttachedTo(bindable);
 
@@ -297,19 +297,19 @@ namespace TeleYumaApp.Behaviors
 
         void TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (RegexValue is null) return;
-            bool valido = (Regex.IsMatch(e.NewTextValue, RegexValue, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-            ((CustomEntry)sender).TextColor = valido ? ColorValid : ColorInvalid;
+            //if (RegexValue is null) return;
+            //bool valido = (Regex.IsMatch(e.NewTextValue, RegexValue, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            //((CustomEntry)sender).TextColor = valido ? ColorValid : ColorInvalid;
 
-            ((CustomEntry)sender).Image = valido ? ImageValid : ImageInvalid;
+            //((CustomEntry)sender).Image = valido ? ImageValid : ImageInvalid;
         }
 
         protected override void OnDetachingFrom(View bindable)
         {
-            if (bindable is CustomEntry)
-            {
-                ((CustomEntry)bindable).TextChanged -= TextChanged;
-            }
+            //if (bindable is CustomEntry)
+            //{
+            //    ((CustomEntry)bindable).TextChanged -= TextChanged;
+            //}
 
             base.OnDetachingFrom(bindable);
         }

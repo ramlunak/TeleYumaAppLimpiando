@@ -20,8 +20,6 @@ using Android.Util;
 using Android.Nfc;
 using Android.Support.Design.Widget;
 using Java.Lang;
-using AndroidNotification;
-
 
 using System.Threading.Tasks;
 using System.IO;
@@ -36,149 +34,149 @@ namespace TeleYumaApp.Droid
     [Activity(Label = "TeleYumaApp", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        public static Context CurrentContext { get; set; }
-        internal static MainActivity Instance { get; private set; }
-        public static Activity CurrentActivity { get; set; }
-        public string Pantalla { get; set; }
+        //public static Context CurrentContext { get; set; }
+        //internal static MainActivity Instance { get; private set; }
+        //public static Activity CurrentActivity { get; set; }
+        //public string Pantalla { get; set; }
 
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
-            try
-            {
-                CurrentContext = activity;
-                CurrentActivity = activity;
-            }
-            catch (System.Exception ex)
-            { 
-                App.Current.MainPage.DisplayAlert("System",ex.Message,"ok");
-            }
+            //try
+            //{
+            //    CurrentContext = activity;
+            //    CurrentActivity = activity;
+            //}
+            //catch (System.Exception ex)
+            //{ 
+            //    App.Current.MainPage.DisplayAlert("System",ex.Message,"ok");
+            //}
         }
 
         protected override void OnCreate(Bundle bundle)
         {
 
-            try
-            {
+            //try
+            //{
                 TabLayoutResource = Resource.Layout.Tabbar;
                 ToolbarResource = Resource.Layout.Toolbar;
                 base.OnCreate(bundle);
-                CarouselViewRenderer.Init();
-                CachedImageRenderer.Init(true);
-            }
-            catch (System.Exception ex)
-            {
+               // CarouselViewRenderer.Init();
+                //CachedImageRenderer.Init(true);
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
+            //}
 
-                App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
-            }
+            global::Xamarin.Forms.Forms.Init(this, bundle);
+            LoadApplication(new TeleYumaApp.App());
 
+            //try
+            //{
+            //    if (Intent.Extras != null)
+            //    {
+            //        foreach (var key in Intent.Extras.KeySet())
+            //        {
+            //            if (key != null)
+            //            {
+            //                var value = Intent.Extras.GetString(key);
+            //                Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
+            //            }
+            //        }
+            //    }
 
-            try
-            {
-                if (Intent.Extras != null)
-                {
-                    foreach (var key in Intent.Extras.KeySet())
-                    {
-                        if (key != null)
-                        {
-                            var value = Intent.Extras.GetString(key);
-                            Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
-                        }
-                    }
-                }
+            //    IsPlayServicesAvailable();
+            //    CreateNotificationChannel();
 
-                IsPlayServicesAvailable();
-                CreateNotificationChannel();
+            //    global::Xamarin.Forms.Forms.Init(this, bundle);
 
-                global::Xamarin.Forms.Forms.Init(this, bundle);
+            //    //need this line to init effect in android
+            //    Xamarin.KeyboardHelper.Platform.Droid.Effects.Init(this);
 
-                //need this line to init effect in android
-                Xamarin.KeyboardHelper.Platform.Droid.Effects.Init(this);
+            //    CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();     
+            //    DependencyService.Register<CloseApplication>();
+            //}
+            //catch (System.Exception ex)
+            //{
 
-                CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();              
-                DependencyService.Register<CallService>();
-                DependencyService.Register<CloseApplication>();
-            }
-            catch (System.Exception ex)
-            {
+            //    App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
+            //}
 
-                App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
-            }
+            //try
+            //{
+            //    var config = new PayPalConfiguration(PayPalEnvironment.Production, "Ae4zGNWtak5RGzB1HXRLmUwDqMgpBd_8oxMZZ_CQNiqKZyHTdjudpoDqMDs69XMdHcgi7NUCDpWFLizK")
+            //    {
+            //        //If you want to accept credit cards
+            //        AcceptCreditCards = false,
+            //        //Your business name
+            //        MerchantName = "TeleYuma",
+            //        //Your privacy policy Url
+            //        MerchantPrivacyPolicyUri = "https://www.example.com/privacy",
+            //        //Your user agreement Url
+            //        MerchantUserAgreementUri = "https://www.example.com/legal",
+            //        // OPTIONAL - ShippingAddressOption (Both, None, PayPal, Provided)
+            //        ShippingAddressOption = ShippingAddressOption.Both,
+            //        // OPTIONAL - Language: Default languege for PayPal Plug-In
+            //        Language = "es",
+            //        // OPTIONAL - PhoneCountryCode: Default phone country code for PayPal Plug-In
+            //        //PhoneCountryCode = "1",
+            //    };
 
-            try
-            {
-                var config = new PayPalConfiguration(PayPalEnvironment.Production, "Ae4zGNWtak5RGzB1HXRLmUwDqMgpBd_8oxMZZ_CQNiqKZyHTdjudpoDqMDs69XMdHcgi7NUCDpWFLizK")
-                {
-                    //If you want to accept credit cards
-                    AcceptCreditCards = false,
-                    //Your business name
-                    MerchantName = "TeleYuma",
-                    //Your privacy policy Url
-                    MerchantPrivacyPolicyUri = "https://www.example.com/privacy",
-                    //Your user agreement Url
-                    MerchantUserAgreementUri = "https://www.example.com/legal",
-                    // OPTIONAL - ShippingAddressOption (Both, None, PayPal, Provided)
-                    ShippingAddressOption = ShippingAddressOption.Both,
-                    // OPTIONAL - Language: Default languege for PayPal Plug-In
-                    Language = "es",
-                    // OPTIONAL - PhoneCountryCode: Default phone country code for PayPal Plug-In
-                    //PhoneCountryCode = "1",
-                };
+            //    CrossPayPalManager.Init(config, this);
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    ;
+            //}
 
-                CrossPayPalManager.Init(config, this);
-            }
-            catch (System.Exception ex)
-            {
-                ;
-            }
+            //try
+            //{
 
-            try
-            {
+            //    if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)
+            //        && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.CallPhone) == (int)Permission.Granted)
+            //         && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
+            //    {
+            //        var IdSms = this.Intent.GetStringExtra("sms");
 
-                if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)
-                    && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.CallPhone) == (int)Permission.Granted)
-                     && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
-                {
-                    var IdSms = this.Intent.GetStringExtra("sms");
-                   
-                    if (IdSms == null)
-                    {
-                        // startService();
-                    }
+            //        if (IdSms == null)
+            //        {
+            //            // startService();
+            //        }
 
-                    LoadApplication(new TeleYumaApp.App());
+            //        LoadApplication(new TeleYumaApp.App());
 
-                }
-                else
-                {
-                    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts, Manifest.Permission.CallPhone, Manifest.Permission.ReadExternalStorage }, 0);
+            //    }
+            //    else
+            //    {
+            //        ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts, Manifest.Permission.CallPhone, Manifest.Permission.ReadExternalStorage }, 0);
 
-                }
+            //    }
 
-                //if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)                    
-                //     && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
-                //{
-                //    var IdSms = this.Intent.GetStringExtra("sms");
-                //    var open = _Global.IsOpen;
+            //    //if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)                    
+            //    //     && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
+            //    //{
+            //    //    var IdSms = this.Intent.GetStringExtra("sms");
+            //    //    var open = _Global.IsOpen;
 
-                //    if (IdSms == null)
-                //    {
-                //        // startService();
-                //    }
+            //    //    if (IdSms == null)
+            //    //    {
+            //    //        // startService();
+            //    //    }
 
-                //    LoadApplication(new TeleYumaApp.App());
+            //    //    LoadApplication(new TeleYumaApp.App());
 
-                //}
-                //else
-                //{
-                //    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts,Manifest.Permission.ReadExternalStorage }, 0);
+            //    //}
+            //    //else
+            //    //{
+            //    //    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts,Manifest.Permission.ReadExternalStorage }, 0);
 
-                //}
-            }
-            catch (System.Exception ex)
-            {
+            //    //}
+            //}
+            //catch (System.Exception ex)
+            //{
 
-                App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
-            }
+            //    App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
+            //}
 
         }
 
@@ -206,48 +204,48 @@ namespace TeleYumaApp.Droid
 
         #region 
 
-        public const string TAG = "MainActivity";
-        public static string CHANNEL_ID = "com.teleyuma.chanel";
+        //public const string TAG = "MainActivity";
+        //public static string CHANNEL_ID = "com.teleyuma.chanel";
              
-        public bool IsPlayServicesAvailable()
-        {
-            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-            if (resultCode != ConnectionResult.Success)
-            {
-                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-                    Log.Debug(TAG, GoogleApiAvailability.Instance.GetErrorString(resultCode));
-                else
-                {
-                    Log.Debug(TAG, "This device is not supported");
-                    Finish();
-                }
-                return false;
-            }
+        //public bool IsPlayServicesAvailable()
+        //{
+        //    int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+        //    if (resultCode != ConnectionResult.Success)
+        //    {
+        //        if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+        //            Log.Debug(TAG, GoogleApiAvailability.Instance.GetErrorString(resultCode));
+        //        else
+        //        {
+        //            Log.Debug(TAG, "This device is not supported");
+        //            Finish();
+        //        }
+        //        return false;
+        //    }
 
-            Log.Debug(TAG, "Google Play Services is available.");
-            return true;
-        }
+        //    Log.Debug(TAG, "Google Play Services is available.");
+        //    return true;
+        //}
         
-        private void CreateNotificationChannel()
-        {
-            if (Build.VERSION.SdkInt < BuildVersionCodes.O)
-            {
-                // Notification channels are new in API 26 (and not a part of the
-                // support library). There is no need to create a notification
-                // channel on older versions of Android.
-                return;
-            }
+        //private void CreateNotificationChannel()
+        //{
+        //    if (Build.VERSION.SdkInt < BuildVersionCodes.O)
+        //    {
+        //        // Notification channels are new in API 26 (and not a part of the
+        //        // support library). There is no need to create a notification
+        //        // channel on older versions of Android.
+        //        return;
+        //    }
 
-            var channelName = CHANNEL_ID;
-            var channelDescription = string.Empty;
-            var channel = new NotificationChannel(CHANNEL_ID, channelName, NotificationImportance.Default)
-            {
-                Description = channelDescription
-            };
+        //    var channelName = CHANNEL_ID;
+        //    var channelDescription = string.Empty;
+        //    var channel = new NotificationChannel(CHANNEL_ID, channelName, NotificationImportance.Default)
+        //    {
+        //        Description = channelDescription
+        //    };
 
-            var notificationManager = (NotificationManager)GetSystemService(NotificationService);
-            notificationManager.CreateNotificationChannel(channel);
-        }
+        //    var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+        //    notificationManager.CreateNotificationChannel(channel);
+        //}
     
 
         #endregion
@@ -270,21 +268,21 @@ namespace TeleYumaApp.Droid
         }
 
       
-        public void createNotiChanel()
-        {
-            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
-            {
-                ICharSequence noti_chan = new Java.Lang.String("noti_chan_urgent");
-                var importance = NotificationImportance.High;
-                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, noti_chan, importance);
-                channel.Description = "teleyuma.noti.sms";
+        //public void createNotiChanel()
+        //{
+        //    if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+        //    {
+        //        ICharSequence noti_chan = new Java.Lang.String("noti_chan_urgent");
+        //        var importance = NotificationImportance.High;
+        //        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, noti_chan, importance);
+        //        channel.Description = "teleyuma.noti.sms";
 
-                NotificationManager notificationManager = (NotificationManager)GetSystemService(NotificationService);
-                notificationManager.CreateNotificationChannel(channel);
+        //        NotificationManager notificationManager = (NotificationManager)GetSystemService(NotificationService);
+        //        notificationManager.CreateNotificationChannel(channel);
 
-            }
+        //    }
 
-        }
+        //}
                
         protected override void OnDestroy()
         {
@@ -313,25 +311,25 @@ namespace TeleYumaApp.Droid
         {
             base.OnActivityResult(requestCode, resultCode, intent);
 
-            if (requestCode == PickImageId)
-            {
-                if ((resultCode == Result.Ok) && (intent != null))
-                {
-                    Android.Net.Uri uri = intent.Data;
-                    Stream stream = ContentResolver.OpenInputStream(uri);
+            //if (requestCode == PickImageId)
+            //{
+            //    if ((resultCode == Result.Ok) && (intent != null))
+            //    {
+            //        Android.Net.Uri uri = intent.Data;
+            //        Stream stream = ContentResolver.OpenInputStream(uri);
 
-                    // Set the Stream as the completion of the Task
-                    PickImageTaskCompletionSource.SetResult(stream);
-                }
-                else
-                {
-                    PickImageTaskCompletionSource.SetResult(null);
-                }
-            }
-            else
-            {
-                PayPalManagerImplementation.Manager.OnActivityResult(requestCode, resultCode, intent);
-            }
+            //        // Set the Stream as the completion of the Task
+            //        PickImageTaskCompletionSource.SetResult(stream);
+            //    }
+            //    else
+            //    {
+            //        PickImageTaskCompletionSource.SetResult(null);
+            //    }
+            //}
+            //else
+            //{
+            //    PayPalManagerImplementation.Manager.OnActivityResult(requestCode, resultCode, intent);
+            //}
         }
 
         public class CloseApplication : ICloseApplication

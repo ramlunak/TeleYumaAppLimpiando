@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <xf:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xf="clr-namespace:TeleYumaApp.BottonBar"
-              xmlns:local="clr-namespace:TeleYumaApp"
-           
-             xmlns:pages="clr-namespace:TeleYumaApp.Pages"
-             xmlns:sms="clr-namespace:TeleYumaApp.SMS"
-             xmlns:pagesnew="clr-namespace:TeleYumaApp.PagesNew"
-             xmlns:contactos="clr-namespace:TeleYumaApp.Contactos"        
+             xmlns:xf="clr-namespace:TeleYumaApp.BottonBar"            
              x:Class="TeleYumaApp.Pages.HomeTabbedPage"  
              Title ="TELEYUMA" BarTextColor="White" SelectedItem="{Binding TabIndex}">
 
